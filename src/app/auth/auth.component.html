@@ -1,0 +1,30 @@
+<div class="bg">
+    <div class="login-box">
+        <h4>Login</h4>
+        <form [formGroup]="formLogin">
+            <div class="form-group">
+                <label>Usuário</label>
+                <div class="input-group">
+                    <input type="text" formControlName="login" class="form-control input-lower">
+                </div>
+            </div>
+            <div class="form-group">
+                <label>Senha</label>
+                <div class="input-group">
+                    <input style="width: 177px;" type="{{pwdVisible ? 'text' : 'password'}}" formControlName="password" class="form-control input-lower" (keyup.enter)="login(formLogin.value)">
+                    <div class="input-group-append" (click)="pwdVisible = !pwdVisible">
+                        <span class="input-group-text" >
+                            <mat-icon class="ico">{{pwdVisible ? 'visibility_off' : 'visibility'}}</mat-icon>
+                        </span>
+                    </div>
+                </div>
+            </div>
+            <!-- <mat-form-field appearance="outline">
+                <mat-label>Senha</mat-label>
+                <input formControlName="password" matInput type="{{pwdVisible ? 'text' : 'password'}}" (keyup.enter)="login(formLogin.value)">
+                <mat-icon class="ico" matSuffix (click)="pwdVisible = !pwdVisible">{{pwdVisible ? 'visibility_off' : 'visibility'}}</mat-icon>
+            </mat-form-field> -->
+        </form>
+        <button mat-button-flat class="login-bt" (click)="login(formLogin.value)" [disabled]="!formLogin.valid" title="{{!formLogin.valid ? 'Preencha os campos obrigatórios' : 'Entrar'}}">Entrar</button>
+    </div>
+</div>

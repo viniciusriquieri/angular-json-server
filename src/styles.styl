@@ -1,1 +1,240 @@
 /* You can add global styles to this file, and also import other style files */
+@import '~bootstrap/dist/css/bootstrap.min.css';
+@import "~@fortawesome/fontawesome-free/css/all.css"; 
+
+
+html, body { height: 100%; }
+body { font-family: Roboto, "Helvetica Neue", sans-serif; }
+
+* {
+    padding:0;
+    margin:0;
+    vertical-align:baseline;
+    list-style:none;
+    border:0
+}
+
+input,textarea,select,button{
+	text-transform: uppercase;
+    box-shadow: none!important;
+    &:focus{
+        outline: none;
+		border-color: #9CA4A7!important;
+    }
+    &:disabled{
+        cursor: not-allowed;
+        background: #9CA4A7!important;
+		border-color: #9CA4A7!important;
+        color: #EAEEEF!important;
+        &:hover{
+            background-color: #9CA4A7!important;
+        }
+    }
+}
+
+*::placeholder{
+	text-transform: none;
+}
+
+textarea{
+    resize:none;
+}
+
+//toast-notification styles
+.error.mat-snack-bar-container{
+	background-color: #D05039;
+	color: #fff;
+}
+
+.success.mat-snack-bar-container{
+	background-color: #88A842;
+	color: #fff;
+}
+
+.warn.mat-snack-bar-container{
+	background-color: #FFA61E;
+	color: #27343A;
+}
+
+.info.mat-snack-bar-container{
+	background-color: #43a0bb;
+	color: #fff;
+}
+
+.bt {
+	display: flex;
+	flex-direction: row;
+	align-items: center;
+	justify-content: center;
+	font-weight: 400;
+	font-size: 16px;
+	border: none;
+	border-radius: 4px;
+	cursor: pointer;
+	height: 50px;
+	line-height: 160%;
+}
+
+.screen-wrap{
+	padding-top: 64px;
+	height: 100%;
+}
+
+.app-box{
+    display: flex;
+    flex-direction: column;
+    background: #f6f6f6;
+    padding: 20px;
+}
+
+.loading{
+    width: 50px;
+    margin-left: 50%;
+}
+
+.dialog-header {
+	display: flex;
+	flex-direction: row;
+	justify-content: space-between;
+	align-items: center;
+	padding: 25px 25px 0 25px;
+	margin-bottom: 20px;
+	.modal-title{
+		color: #181818;
+        font-size: 24px;
+		font-weight: 500;
+	}
+	.modal-bt{
+		background-color: #fff;
+		cursor: pointer;
+	}
+}
+
+.dialog-body {
+    padding: 15px 25px 0;
+    max-height: calc(100vh - 160px);
+    overflow-y: auto;
+	margin-bottom: 40px;
+}
+
+.dialog-footer {
+	display: flex;
+	flex-direction: row;
+    align-items: center;
+    justify-content: flex-end;
+    padding: 0 25px 25px;
+
+	.bt{
+		width: 150px;
+		margin-left: 20px;
+        text-transform: uppercase
+	}
+}
+
+.dialog-footer hr {
+    margin: 15px 0;
+}
+
+.modal-extra-large .dialog {
+    max-width: 70% !important;
+}
+
+.modal-extra-large2 .dialog {
+    max-width: 100% !important;
+}
+
+.modal-extra-large3 .dialog {
+    max-width: 85% !important;
+}
+
+.modal-extra-large4 .dialog {
+    max-width: 95% !important;
+}
+
+.modal-medium .dialog {
+    max-width: 800px !important;
+}
+
+.modal-medium2 .dialog {
+    max-width: 1000px !important;
+}
+
+.modal-small .dialog {
+    max-width: 500px !important;
+}
+
+.modal-small2 .dialog {
+    max-width: 550px !important;
+}
+
+.modal-mini .dialog{
+	width: 420px!important;
+}
+
+.searchBt{
+	span{
+		cursor: pointer;
+	}	
+}
+
+.tab{
+	display: flex;
+	flex: 1;
+	flex-direction: column;
+}
+
+.tabs{
+	display: flex;
+	flex: 1;
+	flex-direction: row;
+	border-bottom: #D5D5D5;
+	margin-bottom: unset;
+
+	.tab-item{
+		background-color: #F5F7F8;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		text-decoration: none!important;
+		width: 150px;
+		height: 45px;
+		border-left: 1px solid #D5D5D5;
+		border-top: 1px solid #D5D5D5;
+		color:#27343A;
+
+		&:last-child{
+			border-right: 1px solid #D5D5D5;
+		}
+		cursor: pointer;
+	}
+}
+
+.tab-active{
+	background-color: black!important;
+	font-weight: bolder!important;
+	font-size: 16px;
+	line-height: 17px;
+	color: white!important;
+}
+
+.tab-content{
+	display: flex;
+	flex-wrap: wrap;
+	border: 1px solid #D5D5D5;
+	padding: 25px 30px 25px 30px;
+	width: 100%;
+	color: #27343A;
+}
+
+.actions-bt{
+	display: flex;
+	justify-content: flex-start;
+	a{
+		cursor: pointer;	
+		margin-right: 10px;
+	}
+}
+
+.input-lower{
+	text-transform: lowercase;
+}

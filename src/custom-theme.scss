@@ -1,0 +1,19 @@
+@import '~@angular/material/theming';
+
+@include mat-core();
+
+
+$json-server-front-primary: mat-palette($mat-blue-gray);
+$json-server-front-accent: mat-palette($mat-blue-gray, A200, A100, A400);
+
+$json-server-front-warn: mat-palette($mat-red);
+
+$json-server-front-theme: mat-light-theme((
+    color: (
+        primary: $json-server-front-primary,
+        accent: $json-server-front-accent,
+        warn: $json-server-front-warn,
+    )
+));
+
+@include angular-material-theme($json-server-front-theme);

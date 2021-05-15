@@ -1,0 +1,219 @@
+<app-layout [pageTitle]="'Usuários'">
+    <div class="screen-wrap">
+        <div class="app-box">
+            <form [formGroup]="formSearch">
+                <div class="row">
+                    <div class="col-md-9 my-3">
+                        <div class="input-group">
+                            <input #search type="text" formControlName="search" class="form-control"  placeholder="Pesquisar por nome, email, cidade, etc" (keyup)="filtering(formSearch.value.search)">
+                            <div class="input-group-append searchBt">
+                                <span class="input-group-text inputBt" *ngIf="formSearch.value.search!=''" (click)="clearField()"><mat-icon>close</mat-icon></span>
+                                <span class="input-group-text" (click)="filtering(formSearch.value.filterType)"><mat-icon>search</mat-icon></span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-3 my-3">
+                        <div class="btn-group" role="group">
+                            <button type="button" class="btn btn-outline-dark" (click)="previousPage()" [disabled]="pageCounter == 1">Anterior</button>
+                            <button type="button" class="btn btn-outline-dark" (click)="nextPage()" [disabled]="pageCounter == totalPages">Próximo</button>
+                        </div>
+                    </div>
+                </div>
+                
+            </form>
+            <p>Página {{pageCounter}} de {{totalPages}}</p>
+        </div>
+    
+        <div class="app-box">
+            <div class="table-container">
+    
+                <div class="row" *ngIf="showLoading == true">
+                    <div class="col-md-12">
+                        <img class="loading" src="../../../assets/imgs/loading.gif" alt="loading">
+                    </div>
+                </div>
+                <div class="table-responsive" *ngIf="showLoading != true">
+                    <button class="btn btn-dark bt-new" (click)="openModal()"><mat-icon>person_add</mat-icon> Novo Usuário</button>
+                    <table class="table table-striped">
+                        <colgroup>
+                            <col width="25%">
+                            <col width="20%">
+                            <col width="15%">
+                            <col width="10%">
+                        </colgroup>
+                        <thead>
+                            <tr>
+                                <th scope="col">Nome</th>
+                                <th scope="col">E-mail</th>
+                                <th scope="col">Cidade</th>
+                                <th scope="col">Ação</th>
+                            </tr>
+                        </thead>
+                        <tbody *ngIf="showLoading == false">
+                            <tr *ngFor="let user of listUsers">
+                                <td>{{user.name}}</td>
+                                <td class="input-lower">{{user.email}}</td>
+                                <td>{{user.city}}</td>
+                                <td class="actions-bt"> 
+                                    <a (click)="openModal(user)" title="Visualizar/Editar"><mat-icon>person</mat-icon></a>
+                                    <a (click)="openModalDelete(user)" title="Excluir"><mat-icon>highlight_off</mat-icon></a>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+
+</app-layout>
+
+<!-- Modais -->
+<app-modal [(visible)]="enrollModal" class="modal-extra-large">
+    <div class="dialog-header">
+        <span class="modal-title">
+            {{selectedEmployee!= null ? 'Editar novo funcionário' : 'Cadastrar novo funcionário'}}
+        </span>
+        <button class="modal-bt" (click)="closeModal()"><mat-icon>close</mat-icon></button>
+    </div>
+    <div class="dialog-body">
+        <div class="tab">
+            <ul class="tabs">
+                <li class="tab-item" [ngClass]="{'tab-active': tabsObj.mainDataTab}" (click)="selectTab(tabsObj, 'mainDataTab')">
+                    <a>Dados principais</a>
+                </li>
+                <li class="tab-item" [ngClass]="{'tab-active': tabsObj.relativesTab}" (click)="selectTab(tabsObj, 'relativesTab')">
+                    <a>Dependentes</a>
+                </li>
+            </ul>
+            <div class="tab-content" *ngIf="tabsObj.mainDataTab == true">
+                <div class="col-md-4" [formGroup]="formEmployee">
+                    <img class="emp-thumb" src="{{thumbB64}}" alt="thumb">
+                    <input #file type="file" (change)="handleFileInput(file.files)">
+                </div>
+                <div class="col-md-4" [formGroup]="formEmployee">
+                    <div class="form-group">
+                        <label>Nome*</label>
+                        <input type="text" formControlName="name" class="form-control">
+                    </div>
+                    <div class="form-group">
+                        <label>Email*</label>
+                        <input type="text" formControlName="email" class="form-control input-lower">
+                    </div>
+                    <div class="form-group">
+                        <label>Telefone</label>
+                        <input type="text" formControlName="phone" class="form-control" mask="(00) 0000-0000 || (00) 0 0000-0000">
+                    </div>
+                    <div class="form-group">
+                        <label>Cidade</label>
+                        <input type="text" formControlName="city" class="form-control">
+                    </div>
+                </div>
+                <div class="col-md-4" [formGroup]="formEmployee">
+                    <div class="form-group">
+                        <label>Gênero</label>
+                        <div class="row radio-row">
+                            <div class="radio-group">
+                                <input type="radio" name="gender" formControlName="gender" value="masculino" checked>
+                                <label class="form-check-label">
+                                    Masculino
+                                </label>
+                            </div>
+            
+                            <div class="radio-group">
+                                <input type="radio" name="gender" formControlName="gender" value="feminino">
+                                <label class="form-check-label">
+                                    Feminino
+                                </label>
+                            </div>
+            
+                            <div class="radio-group">
+                                <input type="radio" name="gender" formControlName="gender" value="outro">
+                                <label class="form-check-label">
+                                    Outro
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label>Departamento*</label>
+                        <select class="form-control" formControlName="department">
+                            <option value=""></option>
+                            <option value="1">Administrativo</option>
+                            <option value="2">Financeiro</option>
+                            <option value="3">Logística</option>
+                            <option value="4">TI</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+    
+            <div class="tab-content" *ngIf="tabsObj.relativesTab == true">
+                <div style="width: 100%;">
+                    <div class="input-dep" [formGroup]="formRelative">
+                        <div class="form-group col-md-6">
+                            <label>Nome</label>
+                            <input type="text" class="form-control" formControlName="name">
+                        </div>
+                        <div class="form-group col-md-6">
+                            <label>Parentesco</label>
+                            <input type="text" class="form-control" formControlName="kinship">
+                        </div>
+                    </div>
+                        
+                    <button class="btn btn-secondary" [disabled]="formRelative.value.name == '' || formRelative.value.email == ''" (click)="addRelative(formRelative.value)">
+                        <mat-icon>add</mat-icon>
+                    </button>   
+                    <hr>
+                    <div>
+                        <h2>Dependentes:</h2>
+                        <span *ngIf="listRelatives.length == 0">Funcionario sem dependentes</span>
+                        <table class="table" *ngIf="listRelatives.length !== 0">
+                            <thead>
+                                <th>Nome</th>
+                                <th>Parentesco</th>
+                                <th>Excluir</th>
+                            </thead>
+                            <tbody>
+                                <tr *ngFor="let relative of listRelatives; let i = index">
+                                    <td>{{relative.name}}</td>
+                                    <td>{{relative.kinship}}</td>
+                                    <td>
+                                        <mat-icon style="cursor: pointer;" (click)="removeRelative(i)">highlight_off</mat-icon>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        
+        </div>
+        
+        
+
+    </div>
+    <div class="dialog-footer">
+        <button class="bt btn-danger" (click)="closeModal()">Cancelar</button>
+        <button class="bt btn-success" (click)="saveEmployee(formEmployee.value)">Salvar</button>
+    </div>
+</app-modal>
+
+
+<app-modal [(visible)]="deleteModal" class="modal-mini">
+    <div class="dialog-header">
+        <span class="modal-title">
+            Excluir funcionário
+        </span>
+        <button class="modal-bt" (click)="closeModalDelete()"><mat-icon>close</mat-icon></button>
+    </div>
+    <!-- <div class="dialog-body">
+        Você tem certeza que deseja excuir esse funcionário?
+    </div> -->
+    <div class="dialog-footer delete-footer">
+        <button class="bt btn-danger" (click)="closeModalDelete()">Cancelar</button>
+        <button class="bt btn-success" (click)="deleteEmployee(selectedEmployee.id)">Confirmar</button>
+    </div>
+</app-modal>
