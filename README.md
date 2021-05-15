@@ -24,5 +24,5 @@ password: morty123
 
 -A ideia para a tela home seria fazer um dashboard com graficos, para ilustrar os dados cadastrados na nossa aplicação, porém devido a limitaçoes de nossa API, foi colocado apenas uma mensagem de boas vindas ao administrador do sistema
 
--A tela "Usuarios" é onde toda a magia acontece, Cruds
+-A tela "Usuarios" é onde toda a magia acontece.
 
