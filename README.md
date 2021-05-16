@@ -4,10 +4,12 @@ WebApp desenvolvida para o desafio de FrontEnd - SocialBank, cujo onjetivo é de
 
 ## Resumo Técnico
 Esta aplicação foi desenvolvida em Angular 11, utiliza navegação por rotas e guard para permissão baseada em roles. Para estilização foi usado Angular material para criação do layout, e bootstrap para agilizar o alinhamento de componentes. E para nao ser refém de bootstrap, foi usado flexbox também (poderia ser usado no projeto inteiro, porem devido ao pouco tempo que eu tinha desenvolver este projeto, houve o auxilio de libs css).
-Para nao mostrar de cara um portal de cadastro, foi feito uma tela de login, segue abaixo as instruçoes para uso
+Para nao mostrar de cara um portal de cadastro, foi feito uma tela de login, segue abaixo as instruçoes para uso.
 
 
 ## Instruções para uso
+
+-Primeiramente, deve-se rodar o JSON-Server, executando o comando "json-server --watch db.json" no diretorio raíz do projeto. Após isso, deve-se prosseguir com o login.
 
 -Alternativa Login 1 (super-user/admin)
 login: ricksanchez
@@ -26,3 +28,7 @@ password: morty123
 
 -A tela "Usuarios" é onde toda a magia acontece.
 
+
+
+## Observações
+- Devido a limitação de tempo que eu tinha, aplicação não foi desenvolvida utilizando o conceito de "Mobile First", porém ela está responsiva e consegue-se usar pelo celular (durante o desenvolvimento foi usado o emulador mobile do chrome, com as configuraçoes de iPhone X - 375px por 812px)
