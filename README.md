@@ -9,7 +9,7 @@ Para nao mostrar de cara um portal de cadastro, foi feito uma tela de login, seg
 
 ## Instruções para uso
 
--Primeiramente, deve-se rodar o JSON-Server, executando o comando "json-server --watch db.json" no diretorio raíz do projeto. Após isso, deve-se prosseguir com o login.
+- Primeiramente, deve-se rodar o JSON-Server, executando o comando "json-server --watch db.json" no diretorio raíz do projeto. Após isso, deve-se prosseguir com o login.
 
 -Alternativa Login 1 (super-user/admin)
 login: ricksanchez
@@ -20,13 +20,13 @@ login: mortysmith
 password: morty123
 
 
--Para fazer o login, deve-se usar uma das alternativas acima. Devido a limitaçoes do JSON Server, a aplicação simula no próprio front um serviço de autenticação, nele consta um objeto chamado "adminTable", (hard coded mesmo) que contem os atributos: {login, password, name, role, token}, usados para comparação com os dados fornecidos no formulário de login. Após logar com sucesso, todos esses atributos, exceto "password", serão salvos no sessionStorage do navegador.
+- Para fazer o login, deve-se usar uma das alternativas acima. Devido a limitaçoes do JSON Server, a aplicação simula no próprio front um serviço de autenticação, nele consta um objeto chamado "adminTable", (hard coded mesmo) que contem os atributos: {login, password, name, role, token}, usados para comparação com os dados fornecidos no formulário de login. Após logar com sucesso, todos esses atributos, exceto "password", serão salvos no sessionStorage do navegador.
 
--Feito o login, entraremos na aplicação em si, no qual será visto um menu lateral com os itens: "Home","Usuários",  e "Logout", no qual os 2 primeiros são referentes a uma tela da aplicação, e o ultimo apenas um botão de logout. 
+- Feito o login, entraremos na aplicação em si, no qual será visto um menu lateral com os itens: "Home","Usuários",  e "Logout", no qual os 2 primeiros são referentes a uma tela da aplicação, e o ultimo apenas um botão de logout. 
 
--A ideia para a tela home seria fazer um dashboard com graficos, para ilustrar os dados cadastrados na nossa aplicação, porém devido a limitaçoes de nossa API, foi colocado apenas uma mensagem de boas vindas ao administrador do sistema
+- A ideia para a tela home seria fazer um dashboard com graficos, para ilustrar os dados cadastrados na nossa aplicação, porém devido a limitaçoes de nossa API, foi colocado apenas uma mensagem de boas vindas ao administrador do sistema
 
--A tela "Usuarios" é onde toda a magia acontece.
+- A tela "Usuarios" é onde toda a magia acontece.
 
 
 
